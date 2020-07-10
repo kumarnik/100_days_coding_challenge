@@ -1,0 +1,56 @@
+Problem1:Max Consecutive Ones
+Given a binary array, find the maximum number of consecutive 1s in this array.
+Input: [1,1,0,1,1,1]
+Output: 3
+Explanation: The first two digits or the last three digits are consecutive 1s.
+The maximum number of consecutive 1s is 3.
+https://leetcode.com/explore/learn/card/fun-with-arrays/521/introduction/3238/
+
+Code:
+
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        c=0
+        max_count=0
+        for i in range(0,len(nums)):
+            if nums[i]==1:
+                c=c+1
+                if(c>max_count):
+                    max_count=c
+            else:
+                c=0
+                continue
+        return(max_count)    
+        
+        
+        
+        
+Problem2:Find Numbers with Even Number of Digits  
+Given an array nums of integers, return how many of them contain an even number of digits.
+Input: nums = [555,901,482,1771]
+Output: 1 
+Explanation: 
+Only 1771 contains an even number of digits.
+https://leetcode.com/explore/learn/card/fun-with-arrays/521/introduction/3237/
+
+
+Code:
+
+class Solution:
+    def count_digit(self,n):
+        c=0
+        while(n!=0):
+            n=n//10
+            c=c+1
+        return c 
+       
+    def findNumbers(self, nums: List[int]) -> int:
+        count=0
+        
+        for i in nums:
+            digi_count=self.count_digit(i)
+            if(digi_count%2==0):
+                count=count+1
+        return count        
+            
+
