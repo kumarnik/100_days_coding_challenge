@@ -1,0 +1,259 @@
+Practice Problems:
+Problem #1 : Range Sum Queries using Prefix Sum
+Description : We are given an Array of n integers, We are given q queries having indices l and r . We have to find out sum between the given range of indices.
+
+Input:
+[4, 5, 3, 2, 5]
+3
+0 3
+2 4
+1 3
+Output:
+14 (4+5+3+2)
+10 (3+2+5)
+10 (5+3+2)
+
+Solution:
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n,c,l,r;
+    cout<<"enter number of elements in the array";
+    cin>>n;
+    int a[n];
+    int prefix_sum[n];
+    cout<<"enter elements";
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    prefix_sum[0]=a[0];
+    for(int i=1;i<5;i++)
+    {
+        //""" compute prefix sum array"""
+        prefix_sum[i]=prefix_sum[i-1]+a[i];
+    }
+    cout<<"enter no of times u want to run this"<<endl;
+    cin>>c;
+    while(c>0)
+    {
+        cout<<"enter l and r";
+        cin>>l>>r;
+        if(l==0)
+        {
+        cout<<prefix_sum[r]<<endl;
+        }
+        else
+        {
+        cout<<prefix_sum[r]-prefix_sum[l-1];
+        }
+        c=c-1;
+        
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+Problem #2 : Equilibrium index of an array
+Description - Equilibrium index of an array is an index such that the sum of elements at lower indexes is equal to the sum of elements at higher indexes. 
+We are given an Array of integers, We have to find out the first index i from left such that -
+A[0] + A[1] + ... A[i-1] = A[i+1] + A[i+2] ... A[n-1]
+Input
+[-7, 1, 5, 2, -4, 3, 0]
+Output
+3
+A[0] + A[1] + A[2] = A[4] + A[5] + A[6]
+
+Solution:
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n,sum=0,leftsum=0;
+    cout<<"enter number of elements in the array";
+    cin>>n;
+    int a[n];
+    cout<<"enter elements";
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+        sum+=a[i];
+    }
+    
+    for(int i=0;i<n;i++)
+    {
+        sum-=a[i];
+        if(sum==leftsum)
+        {
+            cout<<i;
+            return 0;
+        }
+        leftsum+=a[i];
+        
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+Problem #3 : Largest Sum Subarray
+Description : We are given an array of positive and negative integers. We have to find the subarray having maximum sum.
+Input
+[-3, 4, -1, -2, 1, 5]
+Output
+7
+(4+(-1)+(-2)+1+5)
+Solution:
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n,sum=0;
+    cout<<"enter number of elements in the array";
+    cin>>n;
+    int a[n];
+    cout<<"enter elements";
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    int max_current=a[0];
+    int max_global=a[0];
+    for(int i=1;i<n;i++)
+    {
+        max_current=max(a[i],a[i]+max_current);
+        if(max_current>max_global)
+        {
+            max_global=max_current;
+        }
+        
+        
+    }
+    
+    cout<<max_global;
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Problem #4 : Merge two sorted Arrays
+Description : We are given two sorted arrays arr1[ ] and arr2[ ] of size m and n. We have to merge these arrays and store the numbers in arr3[ ] of size m+n.
+Input
+1 3 4 6
+2 5 7 8
+Output
+1 2 3 4 5 6 7 8
+
+Solution:
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n,m;
+    cout<<"enter number of elements in the array a";
+    cin>>n;
+    int a[n];
+    cout<<"enter number of elements in the array b";
+    cin>>m;
+    int b[m];
+    int c[n+m];
+    cout<<"enter elements in array a";
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    cout<<"enter elements in array b";
+    for(int i=0;i<m;i++)
+    {
+        cin>>b[i];
+    }
+    int i=0;
+    int j=0;
+    int k=0;
+    while(i<n && j<m)
+    {
+        if(a[i]<=b[j])
+        {
+            c[k++]=a[i++];
+        }
+        else
+        {
+            c[k++]=b[j++];
+        }
+    }
+    while(i<n)
+    {
+        c[k++]=a[i++];
+    }
+    while(j<m)
+    {
+        c[k++]=b[j++];
+    }
+    
+    for(int i=0;i<m+n;i++)
+    {
+        //print the resultant array
+        cout<<c[i]<<endl;
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
