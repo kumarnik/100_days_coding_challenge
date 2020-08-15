@@ -1,0 +1,256 @@
+Ques:1 
+Given an unsorted array arr[] of size N, rotate it by D elements in the counter-clockwise direction. 
+Input:
+N = 5, D = 2
+arr[] = {1,2,3,4,5}
+Output: 3 4 5 1 2
+Explanation: 1 2 3 4 5  when rotated
+by 2 elements, it becomes 3 4 5 1 2
+https://practice.geeksforgeeks.org/problems/rotate-array-by-n-elements-1587115621/1/?track=ppc-arrays&batchId=221
+Solution:
+void reverseArray(int arr[], int start, int end) 
+{ 
+    if (start >= end) 
+        return; 
+    
+    // Swap elements at start and end  
+    int temp = arr[start];  
+    arr[start] = arr[end];
+    arr[end] = temp; 
+      
+    // Recursive Function calling 
+    reverseArray(arr, start + 1, end - 1);  
+} 
+
+
+void rotateArr(int arr[], int d, int n)
+{
+    reverseArray(arr,0,d-1);
+    reverseArray(arr,d,n-1);
+    reverseArray(arr,0,n-1);
+}
+
+
+Ques:2
+Reverse array in groups
+Given an array arr[] of positive integers of size N. Reverse every sub-array of K group elements.
+
+Example 1:
+
+Input:
+N = 5, K = 3
+arr[] = {1,2,3,4,5}
+Output: 3 2 1 5 4
+Explanation: Reversing groups in size
+k = 3, first group consists of elements
+1, 2, 3. Reversing this group, we have
+elements in order as 3, 2, 1.
+Solution:
+vector<long long> reverseInGroups(vector<long long> mv, int n, int k){
+    int  c=n/k;
+    int i=0;
+    while(c>0)
+    {
+        reverse(mv.begin()+i,mv.begin()+i+k);
+        i+=k;
+        c=c-1;
+    }
+    reverse(mv.begin()+i,mv.end());
+    return mv;
+}
+
+Ques:3
+Who has the majority?
+Input:
+N = 11
+arr[] = {1,1,2,2,3,3,4,4,4,4,5}
+x = 4, y = 5
+Output: 4
+Explanation: n=11; 
+elements = {1,1,2,2,3,3,4,4,4,4,5}; 
+x=4; y=5
+x frequency in arr is = 4 times
+y frequency in arr is = 1 times
+x has higher frequency, so we print 4.
+Solution:
+
+
+int majorityWins(int arr[], int n, int x,int y)
+{
+    int count_x=0;//counter to count frequency of x
+    int count_y=0;//counter to count frequency of y
+    for(int i=0;i<n;i++)
+    {
+        if(arr[i]==x)
+        {   count_x+=1;
+        }
+        if(arr[i]==y)
+        {count_y+=1;
+        }
+    }
+    
+    if(count_x>count_y)
+    {
+        return x;
+    }
+    else if(count_y>count_x)
+    {return y;
+    }
+    else
+    {   return std::min(x, y);
+    }
+}
+
+Ques:4
+Find Transition Point
+You are given a sorted array containing only numbers 0 and 1. Find the transition point efficiently. The transition point is a point where "0" ends and "1" begins (0 based indexing).
+Note that, if there is no "1" exists, print -1.
+Note that, in case of all 1s print 0.
+Example:
+
+Input
+2
+5
+0 0 0 1 1
+4
+0 0 0 0
+
+Output
+3
+-1
+
+Solution:
+
+// Function to find the transition point
+int transitionPoint(int arr[], int n) {
+    // code here
+    if(arr[0]==0 && arr[n-1]==0)
+    {
+        return -1;
+        
+    }
+    else if(arr[0]==1 && arr[n-1]==1)
+    {
+      return 0;  
+    }
+    else
+    {
+        int start=0;
+        int end=n-1; 
+        int mid;
+        while(start<=end)
+        {
+        mid=(start+end)/2;
+        if (arr[mid]==0)
+        {
+            start=mid+1;
+        }
+        else
+        {
+            end=mid-1;
+        }
+        }
+        return start;
+    }
+}
+
+
+Ques:5
+Equilibrium Point
+Given an array A of N positive numbers. The task is to find the first Equilibium Point in the array. 
+Equilibrium Point in an array is a position such that the sum of elements before it is equal to the sum of elements after it.
+Input:
+N = 5
+A[] = {1,3,5,2,2}
+Output: 3
+Explanation: For second test case 
+equilibrium point is at position 3 
+as elements before it (1+3) = 
+elements after it (2+2).
+
+Solution:
+// Function to find equilibrium point
+// a: input array
+// n: size of array
+int equilibriumPoint(long long a[], int n) {
+
+    // Your code here
+    int sum=0;
+    for(int i=0;i<n;i++)
+    {
+        sum+=a[i];
+    }
+    
+    int leftsum=0;
+    for(int i=0;i<n;i++)
+    {
+        sum-=a[i];
+        if(sum==leftsum)
+        {
+            return i+1;
+        }
+        leftsum+=a[i];
+    }
+    return -1;
+}
+
+Ques:6
+Leaders in an array
+Given an array A of positive integers. Your task is to find the leaders in the array.
+
+Note: An element of array is leader if it is greater than or equal to all the elements to its right side. Also, the rightmost element is always a leader. 
+Input:
+N = 6
+A[] = {16,17,4,3,5,2}
+Output: 17 5 2
+Explanation: The first leader is 17 
+as it is greater than all the elements 
+to its right.  Similarly, the next 
+leader is 5. The right most element 
+is always a leader so it is also 
+included.
+
+Solution:
+
+// Function to find the leaders in an array of size n
+vector<int> leaders(int arr[], int n){
+    vector<int >v;
+    v.insert(v.begin(),arr[n-1]);
+    int max=arr[n-1];
+    int k=0;
+    for(int i=n-2;i>=0;i--)
+    {
+        if(arr[i]>=max)
+        {
+            k+=1;
+            v.insert(v.begin()+k,arr[i]);
+            max=arr[i];
+        }
+    }
+    reverse(v.begin(), v.end());
+    return v;   
+}
+
+
+Ques:7
+Wave Array
+Given a sorted array arr[] of distinct integers. Sort the array into a wave-like array and return it. 
+In other words, arrange the elements into a sequence such that a1 >= a2 <= a3 >= a4 <= a5..... (considering the increasing lexicographical order).
+Input:
+N = 5
+arr[] = {1,2,3,4,5}
+Output: 2 1 4 3 5
+Explanation: Array elements after 
+sorting it in wave form are 
+2 1 4 3 5.
+Solution:(Python)
+def convertToWave(A,N):
+    d=2
+    c=N//d
+    i=0
+    while(c>0):
+        A[i+1],A[i]=A[i],A[i+1]
+        i+=d
+        c=c-1
+    return A
+    
