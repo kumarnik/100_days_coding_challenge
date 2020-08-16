@@ -1,0 +1,102 @@
+Ques:1
+Find Immediate Smaller Than X
+Given an array arr[] of size N containing positive integers and an integer X. 
+You need to find the value in the array which is smaller than X and closest to it.
+Sample Input:
+2
+5
+4 67 13 12 15
+16
+5
+1 2 3 4 5
+1
+
+Sample Output:
+15
+-1
+
+Solution:
+// User function to complete
+// arr[]: input array
+// n: size of array
+// k: find element smaller and closest to it. 
+int immediateSmaller(int arr[], int n, int x)
+{
+    // your code here
+    int min=INT_MAX;
+    int flag=0;
+    int diff;
+    int min_element;
+    for(int i=0;i<n;i++)
+    {
+        if(arr[i]<x)
+        {
+            diff=x-arr[i];
+            if(diff<min)
+            {
+                min=diff;
+                min_element=arr[i];
+                flag=1;
+            }
+        }
+    }
+    if(flag==0)
+        return -1;
+    else
+        return min_element;
+}
+
+
+Ques:2
+Subarray with given sum
+Given an unsorted array A of size N of non-negative integers, find a continuous sub-array which adds to a given number S.
+
+Example 1:
+
+Input:
+N = 5, S = 12
+A[] = {1,2,3,7,5}
+Output: 2 4
+Explanation: The sum of elements 
+from 2nd position to 4th position 
+is 12.
+
+Solution:
+
+// Function to find the subarray with given sum k
+// arr: input array
+// n: size of array
+vector<int> subarraySum(int arr[], int n, int s){
+    
+    // Your code here
+    vector<int> v;
+    int start=0;
+    int last=0;
+    int sum=0;
+    int flag=0;
+    for(int i=0;i<n;i++)
+    {
+        sum+=arr[i];
+        if(sum>=s)
+        {
+            last=i;
+            while(s<sum && start<last)
+            {
+                sum=sum-arr[start];
+                start=start+1;
+            }
+            
+            if(sum==s)
+            {
+                v.push_back(start+1);
+                v.push_back(last+1);
+                flag=1;
+                break;
+            }
+        }
+    }
+    if(flag==0)
+        v.push_back(-1);
+    return v;
+    
+}
