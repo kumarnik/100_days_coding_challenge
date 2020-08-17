@@ -100,3 +100,119 @@ vector<int> subarraySum(int arr[], int n, int s){
     return v;
     
 }
+
+Ques:3
+Kadane's Algorithm
+Given an array arr of N integers. Find the contiguous sub-array with maximum sum.
+
+Example 1:
+
+Input:
+N = 5
+arr[] = {1,2,3,-2,5}
+Output: 9
+Explanation: Max subarray sum is 9
+of elements (1, 2, 3, -2, 5) which 
+is a contiguous subarray.
+
+Solution:
+// Function to find subarray with maximum sum
+// arr: input array
+// n: size of array
+int maxSubarraySum(int arr[], int n){
+    
+    int max_till_here=arr[0];
+    int max_global=arr[0];
+    for(int i=1;i<n;i++)
+    {
+        max_till_here=max(arr[i],arr[i]+max_till_here);
+        if(max_till_here>max_global)
+            max_global=max_till_here;
+    }
+    return max_global;
+    
+    // Your code here
+    
+}
+
+Ques:4
+Rearrange an array with O(1) extra space
+Given an array arr[] of size N where every element is in the range from 0 to n-1. Rearrange the given array so that arr[i] becomes arr[arr[i]].
+
+Example 1:
+
+Input:
+N = 2
+arr[] = {1,0}
+Output: 0 1
+Explanation: arr[0] = 1 and arr[arr[0]]
+= 0.Also, arr[1] = 0 and arr[arr[1]] = 1.
+So, rearranging elements, we get array 
+as, 0 1.
+
+Solution:
+// Function to rarrange the elements in O(1) extra space
+// arr: input array
+// n: size of array
+void arrange(long long arr[], int n) {
+    // Your code here
+    
+    
+    for(int i=0;i<n;i++)
+    {
+        arr[i]=arr[i]+(arr[arr[i]]%n)*n;
+    }
+    
+    for(int i=0;i<n;i++)
+    {
+        arr[i]=arr[i]/n;
+    }
+    
+}
+
+Question:5
+Trapping Rain Water
+Given an array arr[] of N non-negative integers representing the height of blocks at index i as Ai where the width of each block is 1.
+Compute how much water can be trapped in between blocks after raining.
+
+
+Input:
+N = 4
+arr[] = {7,4,0,9}
+Output: 10
+Explanation: Water trapped by the 
+block of height 4 is 3 units, block 
+of height 0 is 7 units. So, the 
+total unit of water trapped is 
+10 units.
+
+Solution:
+
+// function to find the trapped water in between buildings
+// arr: input array
+// n: size of array
+int trappingWater(int arr[], int n){
+
+    // Your code here
+    int max_left[n];
+    int max_right[n];
+    max_left[0]=arr[0];
+    int total=0;
+    for(int i=1;i<n;i++)
+    {
+        max_left[i]=max(arr[i],max_left[i-1]);
+    }
+    
+    max_right[n-1]=arr[n-1];
+    for(int i=n-2;i>=0;i--)
+    {
+        max_right[i]=max(arr[i],max_right[i+1]);
+    }
+    
+    for(int i=0;i<n;i++)
+    {
+        total+=max(0,min(max_left[i],max_right[i])-arr[i]);
+    }
+    
+    return total;    
+}
