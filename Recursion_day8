@@ -1,3 +1,7 @@
+                                                                                 #RECURSION
+
+#PROBLEM:1
+
 Given an unsorted array of N elements and an element X. The task is to write a recursive function to check whether the element X is present in the given array or not.
 
 Example:
@@ -6,3 +10,136 @@ X = 3.
 
 The function should return True, as 3 is 
 present in the array.
+
+#include <iostream>
+
+using namespace std;
+
+bool search(int arr[],int l,int r,int x)
+{
+    if(r<l)
+    {
+        return false;
+    }
+    if(arr[l]==x)
+        return true;
+    if(arr[r]==x)
+        return true;
+        
+    return search(arr,l+1,r-1,x);    
+}
+
+int main()
+{
+    int n;
+    bool s;
+    int a[n];
+    cout<<"enter n"<<endl;
+    cin>>n;
+    cout<<"enter the elements"<<endl;
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    s=search(a,0,n-1,3);
+    if(s==true)
+        cout<<"TRUE";
+    else
+        cout<<"FALSE";
+}
+----------------------------------***********************************************************************--------------------------------------
+#PROBLEM:2
+Given a string, the task is to write a recursive function to check if the given string is palindrome or not.
+
+Examples:
+Input : string = "malayalam"
+Output : Yes
+Reverse of malayalam is also
+malayalam.
+
+Input : string = "max"
+Output : No
+Reverse of max is not max.
+
+#include <iostream>
+using namespace std;
+
+bool search(char s[],int l,int r)
+{
+    if(r<=l)
+    {
+        return true;
+    }
+    else
+        if(s[l]==s[r])
+            search(s,l+1,r-1);
+        else
+            return false;
+}
+
+int main()
+{
+    int n;
+    char s[3]={'m','a','m'};
+    bool s1;
+    s1=search(s,0,2);
+    if(s1==true)
+        cout<<"TRUE";
+    else
+        cout<<"FALSE";
+}
+---------------------------*******************************************************************--------------------------------------------------------
+
+#PROBLEM:3 SUBSET GENERATION
+Given a set represented as string, write a recursive code to print all subsets of it. The subsets can be printed in any order.
+
+Examples:
+Input :  set = "abc"
+Output : "". "a", "b", "c", "ab", "ac", "bc", "abc"
+
+Input : set = "abcd"
+Output : "" "a" "ab" "abc" "abcd" "abd" "ac" "acd"
+         "ad" "b" "bc" "bcd" "bd" "c" "cd" "d"
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// str : Stores input string
+// curr : Stores current subset
+// index : Index in current subset, curr
+void powerSet(string str, int index = 0,
+              string curr = "")
+{
+    int n = str.length();
+
+    // base case
+    if (index == n) 
+    {
+        cout << curr << endl;
+        return;
+    }
+    powerSet(str, index + 1, curr + str[index]);
+    
+    powerSet(str, index + 1, curr);
+}
+
+int main()
+{
+    string str;
+    cout<<"enter string";
+    cin>>str;
+    powerSet(str);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
