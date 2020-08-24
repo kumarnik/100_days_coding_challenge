@@ -133,6 +133,47 @@ int main()
     return 0;
 }
 
+---------------------------------------------***********************************************************************---------------------------------------------
+
+#PROBLEM:4
+Given a string, print all permutations of it.
+
+Input : str = "ABC"
+Output : ABC ACB BAC BCA CAB CBA
+
+void print_permutation(string str,
+              string asf)
+{
+    string s;
+    if(str.length()==0)
+    {
+        cout<<asf<<endl;
+        return;
+    }
+    for(int i=0;i<str.length();i++)
+    {
+        char ch=str[i];
+        s=str.substr(0,i)+str.substr(i+1);
+        print_permutation(s,asf+ch);
+        
+    }
+}
+
+int main()
+{
+    string str;
+    cout<<"enter string";
+    cin>>str;
+    print_permutation(str,"");
+    return 0;
+}
+
+
+---------------------------------------------------***************************************************************-----------------------------------------------------
+
+#PROBLEM:5
+
+
 
 
 
