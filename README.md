@@ -4,7 +4,6 @@ Here is a 100 day coding challenge:Every day we solve some problems related to D
 * Searching and Sorting
 * Strings
 * Matrix
-* Bit Magic
 * Recursion
 * Linked Lists
 * Stack
