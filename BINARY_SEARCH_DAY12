@@ -1,0 +1,55 @@
+QUES:1  https://leetcode.com/problems/binary-search/
+Given a sorted (in ascending order) integer array nums of n elements and a target value, write a function to search target in nums. 
+If target exists, then return its index, otherwise return -1.
+
+SOLUTION:
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        l=0
+        r=len(nums)-1
+        while(r>=l):
+            mid=l+(r-l)//2
+            if(nums[mid]==target):
+                return mid
+            elif(nums[mid]>target):
+                r=mid-1
+            else:
+                l=mid+1
+        return -1        
+                
+                
+                
+               
+QUES:2 https://leetcode.com/problems/sqrtx/
+Implement int sqrt(int x).
+
+Compute and return the square root of x, where x is guaranteed to be a non-negative integer.
+
+Since the return type is an integer, the decimal digits are truncated and only the integer part of the result is returned.
+
+Example 1:
+Input: 8
+Output: 2
+Explanation: The square root of 8 is 2.82842..., and since 
+             the decimal part is truncated, 2 is returned.
+
+
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        l=0
+        r=x//2
+        mid=0
+        if(x<=1):
+            return x
+        while(r>=l):
+            mid=l+(r-l)//2
+            if((mid*mid)==x):
+                return mid
+            elif((mid*mid)>x):
+                r=mid-1
+            else:
+                l=mid+1  
+                
+        return r    
+               
+                
