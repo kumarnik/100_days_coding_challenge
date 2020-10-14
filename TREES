@@ -37,3 +37,49 @@ vector <int> preorder(Node* root)
   preutil(root,s);
   return s;
 }
+
+
+INORDER:
+
+// Return a vector containing the inorder traversal of the tree
+void inutil(Node* root,vector<int>&s)
+{
+    if(!root)
+    {
+        return;
+    }
+    
+    inutil(root->left,s);
+    s.push_back(root->data);
+    inutil(root->right,s);
+}
+vector<int> inOrder(Node* root)
+{
+  // Your code here
+  vector<int>v;
+  inutil(root,v);
+  return v;
+}
+
+
+POSTORDER:
+void postutil(Node* root,vector<int>&s)
+{
+    if(!root)
+    {
+        return;
+    }
+    
+    postutil(root->left,s);
+   
+    postutil(root->right,s);
+    s.push_back(root->data);
+}
+
+vector <int> postOrder(Node* root)
+{
+  // Your code here
+  vector<int>v;
+  postutil(root,v);
+  return v;
+}
