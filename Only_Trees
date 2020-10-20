@@ -73,3 +73,14 @@ vector<int> reverseLevelOrder(Node *root)
     reverseutil(root,v1);
     return v1;
 }
+
+
+3)HEIGHT OF A TREE:
+int height(struct Node* node){
+        // code here
+        if(node==NULL)
+        {
+            return 0;
+        }
+        return 1+max(height(node->left),height(node->right));
+    }
