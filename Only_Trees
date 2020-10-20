@@ -1,0 +1,75 @@
+1)Level order
+void levelutil(Node* node,vector<int>&v)
+{
+    if(node==NULL)
+  {
+      return ;
+  }
+  queue<Node*> q;
+  q.push(node);
+  while(!q.empty())
+  {
+      Node* temp=q.front();
+      v.push_back(temp->data);
+      if(temp->left)
+      {
+          q.push(temp->left);
+      }
+      if(temp->right)
+      {
+          q.push(temp->right);
+      }
+  }  
+}
+vector<int> levelOrder(Node* node)
+{
+  //Your code here
+  vector<int>v1;
+  levelutil(node,v1);
+  return v1;
+  
+}
+
+
+2) Reverse level order traversal:
+void reverseutil(Node*root,vector<int>&v)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    queue<Node*> q;
+    stack<int>s;
+    q.push(root);
+    while(!q.empty())
+    {
+        Node* temp=q.front();
+        s.push(temp->data);
+        q.pop();
+        
+        if(temp->right!=NULL)
+        {
+            q.push(temp->right);
+        }
+        if(temp->left!=NULL)
+        {
+            q.push(temp->left);
+        }
+        
+    }
+    
+    while(!s.empty())
+    {
+        v.push_back(s.top());  #storing into the vector
+        s.pop();
+    }
+}
+
+
+vector<int> reverseLevelOrder(Node *root)
+{
+    // code here
+    vector<int>v1;
+    reverseutil(root,v1);
+    return v1;
+}
