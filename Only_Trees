@@ -84,3 +84,82 @@ int height(struct Node* node){
         }
         return 1+max(height(node->left),height(node->right));
     }
+
+
+
+4)DIAMETER OF A TREE:
+
+
+int height(Node* root)
+{
+    if(root==NULL)               #HEIGHT FUNCTION
+    {
+        return 0;
+    }
+    
+    return 1+max(height(root->left),height(root->right));
+}
+
+
+int diameter(Node* node) {
+    if(node==NULL)
+    {
+        return 0;
+    }
+    int lh=height(node->left);
+    int rh=height(node->right);
+    
+    int ld=diameter(node->left);
+    int rd=diameter(node->right);
+    
+    return max(lh+rh+1,max(ld,rd)); 
+}
+
+
+5)MIRROR OF A TREE:
+TreeNode* invertTree(TreeNode* root) {
+        
+        if(root==NULL)
+        {
+            return NULL;
+        }
+        
+        TreeNode* temp=root->right;
+        root->right=root->left;
+        root->left=temp;
+        
+        invertTree(root->left);
+        invertTree(root->right);  
+        return root;
+        
+    }
+    
+    
+    
+6)LEFT VIEW OF A TREE:
+
+void leftviewutil(Node* root,vector<int>&v1)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    v1.push_back(root->data);
+    
+    if(root->left==NULL)
+    {
+        leftviewutil(root->right,v1);
+    }
+    else
+    {
+    leftviewutil(root->left,v1);
+    }
+}
+
+vector<int> leftView(Node *root)
+{
+   // Your code here
+   vector <int> v;
+   leftviewutil(root,v);
+   return v;
+}
