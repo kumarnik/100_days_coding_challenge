@@ -1,0 +1,62 @@
+Q1)Spiral of a matrix:
+https://practice.geeksforgeeks.org/problems/spirally-traversing-a-matrix-1587115621/1#
+Input:
+R = 4, C = 4
+matrix[][] = {{1, 2, 3, 4},
+           {5, 6, 7, 8},
+           {9, 10, 11, 12},
+           {13, 14, 15,16}}
+Output: 
+1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
+
+
+Solution:
+
+vector<int> spirallyTraverse(vector<vector<int> > matrix, int row, int c) 
+    {
+        // code here 
+        int p=0,q=row-1,r=0,s=c-1;
+        int i,j;
+        vector<int>v;
+        while(p<=q && r<=s)
+        {
+            if(p<=q)
+            {
+            for(i=r;i<=s;i++)
+            {
+                v.push_back(matrix[p][i]);
+            }
+            p++;
+            }
+            
+            
+            if(r<=s)
+            {
+            for(j=p;j<=q;j++)
+            {
+                v.push_back(matrix[j][s]);
+            }
+            s--;
+            }
+            
+            if(p<=q)
+            {
+            for(i=s;i>=r;i--)
+            {
+                v.push_back(matrix[q][i]);
+            }
+            q--;
+            }
+            
+            if(r<=s)
+            {
+            for(j=q;j>=p;j--)
+            {
+                v.push_back(matrix[j][r]);
+            }
+            r++;
+            }
+        }
+        return v;
+        
+    }
