@@ -130,3 +130,55 @@ int main()
 
     return 0;
 }
+
+
+
+
+### DETECT CYCCLE IN A UNDIRECTED GRAPH:  https://practice.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1#
+
+bool dfs_utility(vector<int>g[],int V,bool vis[],int start,int parent)
+{
+    vis[start]=true;
+    for(auto node:g[start])
+    {
+        if(!vis[node])
+        {
+            if(dfs_utility(g,V,vis,node,start))
+            {
+                return true;
+            }
+        }
+        else if(node!=parent)
+        {
+            return true;
+            
+        }
+    }
+    return false;
+    
+}
+
+
+bool isCyclic(vector<int> g[], int V)
+{
+    bool vis[V];
+    bool t;
+    for(int i=0;i<V;i++)
+    {
+        vis[i]=false;
+    }
+    
+    for(int i=0;i<V;i++)
+    {
+        if(!vis[i])
+        {
+           if(dfs_utility(g,V,vis,i,-1))
+           {
+               return true;
+           }
+           
+        }
+    }
+    return false;
+   
+}
