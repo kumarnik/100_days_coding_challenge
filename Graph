@@ -182,3 +182,58 @@ bool isCyclic(vector<int> g[], int V)
     return false;
    
 }
+
+
+####-------------------------------------------------------DETECT CYCLE IN DIRECTED GRAPH-------------------------------------------------------
+
+bool detect_cycle(vector <int>adj[],int V,bool vis[],bool anc[],int start)
+{
+    vis[start]=true;
+    anc[start]=true;
+    for(auto node:adj[start])
+    {
+        if(!vis[node])
+        {
+            if(detect_cycle(adj,V,vis,anc,node))
+            {
+                return true;
+            }
+        }
+        else if(anc[node])
+        {
+            return true;
+        }
+        
+        
+    }
+    anc[start]=false;
+    return false;
+    
+}
+
+bool isCyclic(int V, vector<int> adj[])
+{
+    // Your code here
+    bool vis[V];
+    bool anc[V];
+    for(int i=0;i<V;i++)
+    {
+        vis[i]=false;
+        anc[i]=false;
+    }
+    
+    
+    for(int i=0;i<V;i++)
+    {
+        if(!vis[i])
+        {
+            if(detect_cycle(adj,V,vis,anc,i))
+            {
+            return true;
+            }
+        }
+    }
+    return false;
+}
+
+
