@@ -1,0 +1,153 @@
+SUDOKU:
+
+bool check_row(int row,int col,int grid[N][N],int key)
+{
+    for(int i=0;i<9;i++)
+    {
+        if(grid[i][col]==key)
+        {
+            return false;
+        }
+    }
+    return true;
+    
+}
+
+bool check_col(int row,int col,int grid[N][N],int key)
+{
+    for(int j=0;j<9;j++)
+    {
+        if(grid[row][j]==key)
+        {
+            return false;
+        }
+        
+    }
+    return true;
+    
+}
+
+bool check_submatrix(int row,int col,int grid[N][N],int key)
+{
+    int rs,re,cs,ce;
+    
+    if(0<=row && row<=2)
+    {
+        rs=0;
+        re=2;
+    }
+    if(3<=row &&row<=5)
+    {
+        rs=3;
+        re=5;
+    }
+    if(6<=row && row<=8)
+    {
+        rs=6;
+        re=8;
+    }
+    if(0<=col && col<=2)
+    {
+        cs=0;
+        ce=2;
+    }
+    if(3<=col && col<=5)
+    {
+        cs=3;
+        ce=5;
+    }
+    if(6<=col && col<=8)
+    {
+        cs=6;
+        ce=8;
+    }
+    for(int i=rs;i<=re;i++)
+    {
+        for(int j=cs;j<=ce;j++)
+        {
+            if(grid[i][j]==key)
+            {
+            return false;
+                
+            }
+        }
+    }
+    return true;
+    
+}
+
+bool valid_constraint(int row,int col,int grid[N][N],int key)
+{
+    if(check_row(row,col,grid,key) && check_col(row,col,grid,key) && check_submatrix(row,col,grid,key))
+    {
+        return true;
+    }
+    return false;
+}
+
+
+bool soduku_utility(int row,int col,int grid[N][N])
+{
+    
+    if(row==9)
+    {
+        return true;
+    }
+    
+    if(grid[row][col] != 0)
+    {
+        if(col==8)
+        {
+            return soduku_utility(row+1,0,grid);
+        }
+        else
+        {
+            return soduku_utility(row,col+1,grid);
+        }
+    }
+        
+    for(int i=1;i<=9;i++)
+        {
+            if(valid_constraint(row,col,grid,i))
+            {
+                grid[row][col]=i;
+                if(col==8)
+                {
+                    if(soduku_utility(row+1,0,grid))
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    if(soduku_utility(row,col+1,grid))
+                    {
+                        return true;
+                    }
+                    
+                }
+                
+                grid[row][col]=0;
+            }
+            
+        }
+    
+    return false;
+    
+}
+
+bool SolveSudoku(int grid[N][N])  
+{ 
+    return  soduku_utility(0,0,grid);
+}
+
+void printGrid (int grid[N][N]) 
+{
+    for(int i=0;i<N;i++)
+    {
+        for(int j=0;j<N;j++)
+        {
+            cout<<grid[i][j]<<" ";
+        }
+    }
+}
