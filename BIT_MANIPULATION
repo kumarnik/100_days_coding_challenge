@@ -1,0 +1,33 @@
+1)Check no. even or odd:
+#include <iostream>
+using namespace std;
+
+int main()
+{   int n;
+    cin>>n;
+    if((n&1)==0)
+    {   cout<<"even";
+    }
+    else
+    {   cout<<"not even";
+    }
+    return 0;
+}
+
+
+2)Swap 2 numbers without 3rd variable:
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a,b;
+    cin>>a>>b;
+    cout<<"before swap----> "<<"a="<<a<<" b="<<b<<endl;
+    a=a^b;
+    b=a^b;
+    a=a^b;
+    cout<<"after swap ---->"<<"a="<<a<<" b="<<b<<endl;
+    
+    return 0;
+}
