@@ -63,13 +63,14 @@ int main()
                 {
                     count+=1;
                     i=j+1;
+                    k--;
                     break;
                 }
                 else if(a[j]%2!=0)
                 {
                     pos=j;
                     cout<<"in pos wala"<<endl;
-                    if((pos>change) &&(pos<5))
+                    if((pos>change) &&(pos<5)&&(k>0))
                     {
                 
                         cout<<"hello"<<endl<<pos<<" "<<change;
