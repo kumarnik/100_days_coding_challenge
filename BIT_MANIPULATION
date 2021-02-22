@@ -33,17 +33,19 @@ int main()
 }
 
 
-#include <iostream>
 
+
+
+#include <iostream>
 using namespace std;
 
 int main()
 {
-    int a[6]={2,1,6,7,11,5};
-    int k=1;
+    int a[5]={1,2,3,4,5};
+    int k=2;
     int count=0;
     int pos,change;
-    for(int i=0;i<6;i++)
+    for(int i=0;i<5;i++)
     {
         if(a[i]%2==0)
         {
@@ -55,28 +57,34 @@ int main()
         else
         {
             change=i+1;
-            for(int j=i+1;j<6 && k>0;j++)
+            for(int j=i+1;j<5;j++)
             {
-                if(a[j]%2!=0)
+                if((a[j-1]%2!=0) && (a[j]%2!=0))
+                {
+                    count+=1;
+                    i=j+1;
+                    break;
+                }
+                else if(a[j]%2!=0)
                 {
                     pos=j;
                     cout<<"in pos wala"<<endl;
+                    if((pos>change) &&(pos<5))
+                    {
+                
+                        cout<<"hello"<<endl<<pos<<" "<<change;
+                        a[change]=a[change]^a[pos];
+                        a[pos]=a[pos]^a[change];
+                        a[change]=a[pos]^a[change];
+                        k--;
+                        count+=1;
+                        
+                    }
                     break;
                 }
             }
-            if((pos>change) &&(pos<6))
-            {
-                
-                cout<<"hello"<<endl<<pos<<" "<<i;
-            //swap(a[i],a[pos]);
-                a[change]=a[change]^a[pos];
-                a[pos]=a[pos]^a[change];
-                a[change]=a[pos]^a[change];
-                k--;
-                count+=1;
-            }
             cout<<"iis"<<change<<endl;
-            i=i+1;
+            i=change;
         }
         
     }
