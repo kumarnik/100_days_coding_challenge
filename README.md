@@ -8,3 +8,6 @@ Here is a 100 day coding challenge:Every day we solve some problems related to D
 * Linked Lists
 * Stack
 * Queue
+* Graphs
+* bit manipulation
+* back tracking
