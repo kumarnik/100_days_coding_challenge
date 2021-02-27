@@ -1,0 +1,113 @@
+1 :FIND KTH SMALLEST ELEMENT:
+#include <iostream>
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int a[6]={7,10,4,3,20,15};
+    int k=4;
+    priority_queue<int> maxh;
+    
+    for(int i=0;i<6;i++)
+    {
+        maxh.push(a[i]);
+        if(maxh.size()>k)
+        {
+            maxh.pop();
+        }
+    }
+    cout<<maxh.top();
+    return 0;
+}
+
+
+2: Find k largest element in an array:
+#include <iostream>
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int a[6]={7,10,4,3,20,15};
+    int k=4;
+    priority_queue<int,vector<int>,greater<int>> minh;
+    
+    for(int i=0;i<6;i++)
+    {
+        minh.push(a[i]);
+        if(minh.size()>k)
+        {
+            minh.pop();
+        }
+    }
+    while(minh.size()>0)
+    {
+        cout<<minh.top()<<" ";
+        minh.pop();
+    }
+    return 0;
+}
+
+
+3: Sort a K sorted array: 
+It means an element in sorted array presemt in the range of [i-k,i+k]
+
+
+#include <iostream>
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int a[7]={6,5,3,2,8,10,9};
+    int k=3;
+    priority_queue<int,vector<int>,greater<int>> minh;
+    vector<int> v;
+    
+    for(int i=0;i<7;i++)
+    {
+        minh.push(a[i]);
+        if(minh.size()>k)
+        {
+            v.push_back(minh.top());
+            minh.pop();
+        }
+    }
+    for(auto i:v)
+    {
+        cout<<i<<" ";
+    }
+    while(minh.size()>0)
+    {
+        cout<<minh.top()<<" ";
+        minh.pop();
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
