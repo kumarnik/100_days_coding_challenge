@@ -53,3 +53,26 @@ def main():
    
 main()  
 
+
+
+
+2 Maximum Subarray Sum
+
+def main():
+    n=int(input())
+    a = list(map(int,input().strip().split()))[:n]
+    maximum_so_far = 0
+    maximum_ending_here = 0
+    for i in range(0, n):
+        maximum_ending_here = maximum_ending_here + a[i]
+        if maximum_ending_here < 0:
+            maximum_ending_here = 0   
+        elif (maximum_so_far < maximum_ending_here):
+            maximum_so_far = maximum_ending_here  
+    
+    print(maximum_so_far)        
+        
+    
+    
+    
+main() 
