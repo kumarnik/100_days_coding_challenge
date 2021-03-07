@@ -1,0 +1,55 @@
+1
+First Day (50 Marks)
+It is Rajeev's first day at Synpulse and he has been given a scenario to code. The scenario is as follows:
+
+Given an integer array, find the output array such that the elements at each index of the output array are the product of all the numbers in the input array except itself.
+
+
+
+Input Format
+The first line of input consists of number of elements in the array, N.
+The second line of input consists of the N space-separated integers Ai.
+
+Constraints
+1<= N <=50
+-100<= Ai <=100
+
+
+Output Format
+Print the output array space-separately.
+Sample TestCase 1
+Input
+5
+3 6 8 4 7
+Output
+1344 672 504 1008 576
+
+
+def main():
+    n=int(input())
+    a = list(map(int,input().strip().split()))[:n]
+    l1=[]
+    p=1
+    for i in range(n):
+        l1.append(p)
+        p=p*a[i]
+
+    l2=[]
+    t=1
+    for i in range(n-1,-1,-1):
+        l2.append(t)
+        t=t*a[i]
+
+    l2=l2[::-1]    
+        
+    l3=[]
+    
+    for i in range(n):
+        l3.append(l1[i]*l2[i])
+    
+    for i in range(n):
+        print(l3[i],end=" ")    
+        
+   
+main()  
+
