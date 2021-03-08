@@ -160,3 +160,137 @@ int main()
 }
           
        
+       
+       
+       
+       
+       
+       
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+#include<bits/stdc++.h>
+#include <iostream>
+
+
+using namespace std;
+
+int main()
+{
+   int t,N,E,H,A,B,C;
+   cin>>t;
+   int min,sum1,min1,min2,min3,max,count,a,b,c,left_e,left_h,count_hh,count_eggs,flag;
+   while(t>0)
+   {
+       sum1=0,count=0,a=0,b=0,c=0,flag=0;
+       cin>>N>>E>>H>>A>>B>>C;
+       left_h=H;
+       left_e=E;
+       count_eggs=0;
+       count_hh=0;
+       sum1=A+B+C;
+       min1=(A<B?A:B)<C?(A<B?A:B):C;
+       min3=(A>B?A:B)>C?(A>B?A:B):C;
+       min2=sum1-(min1+min3);
+       cout<<min1<<min2<<min3<<endl;
+       max=E>H?E:H;
+       min=(E+H)-max;
+       cout<<min<<endl;
+       if(N>=max)
+       {
+           cout<<-1<<endl;
+       }
+       else
+       {
+           
+           temp=N;
+           while(count<N)
+           {
+               max=left_e>left_h?left_e:left_h;
+               min=(left_e+left_h)-max;
+               if(min1==C)
+               {
+                   if(min>=N)
+                   {
+                       a=0;
+                       b=0;
+                       c=N;
+                       break;
+                   }
+                   else
+                   {
+                       count=count+min;
+                       left_e=E-min;
+                       left_h=H-min;
+                       c=c+min;
+                       
+                   }
+               }
+               
+               
+               else if(min1==B)
+               {
+                   count_hh=left_h/3;
+                   left_h=left_h-(count_hh*3);
+                   b=b+count_hh;
+                   count=count+b;
+                   if(flag==0)
+                   {
+                    min1=min2;
+                    flag=1;
+                   }
+                   else
+                   {
+                       min1=min3;
+                   }
+                   
+                   
+               }
+               
+               else if(min1==A)
+               {
+                   count_eggs=left_e/2;
+                   left_e=left_e-(count_eggs*2);
+                   a=a+count_eggs;
+                   count=count+a;
+                   if(flag==0)
+                   {
+                    min1=min2;
+                    flag=1;
+                   }
+                   else
+                   {
+                       min1=min3;
+                   }
+                   
+               }
+           }
+           
+           
+           
+           
+           
+       }
+       cout<<(A*a+B*b+C*c)<<endl;
+       cout<<a<<b<<c<<endl;
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       t--;
+   }
+
+}
