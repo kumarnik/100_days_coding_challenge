@@ -116,8 +116,8 @@ int main()
                
                if(min1==B)
                {
-                   count_hh=H/3;
-                   left_h=H-count_hh;
+                   count_hh=left_h/3;
+                   left_h=left_h-(count_hh*3);
                    b=b+count_hh;
                    count=count+b;
                    
@@ -126,8 +126,8 @@ int main()
                
                if(min1==A)
                {
-                   count_eggs=E/2;
-                   left_e=E-count_eggs;
+                   count_eggs=left_e/2;
+                   left_e=left_e-(count_eggs*2);
                    a=a+count_eggs;
                    count=count+a;
                    
@@ -140,9 +140,23 @@ int main()
            
        }
        cout<<(A*a+B*b+C*c)<<endl;
+       cout<<a<<b<<c<<endl;
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
        
        
        t--;
    }
 
 }
+          
+       
