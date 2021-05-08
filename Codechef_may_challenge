@@ -1,0 +1,49 @@
+
+3)XOR equality:
+
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+void fastIO()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+}
+
+
+int power(long long x, unsigned int y, int p)
+{
+    int res = 1;
+    x = x % p; 
+    if (x == 0) 
+    {
+        return 0;
+        
+    }
+ 
+    while (y > 0)
+    {
+        if (y & 1)
+        {
+            res = (res*x) % p;
+        }
+        y = y/2;
+        x = (x*x) % p;
+    }
+    return res;
+}
+
+int main() {
+    fastIO();
+	int t,n;
+	cin>>t;
+	while(t>0)
+	{
+	    cin>>n;
+	    int d=pow(10,9)+7;
+	    cout<<power(2,n-1,d)<<endl;
+	    t--;
+	}
+	return 0;
+}
