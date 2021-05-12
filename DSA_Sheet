@@ -285,6 +285,38 @@ public:
     }
 };
 
+7)Trapping Rainwater
+int trappingWater(int arr[], int n){
+        // Code here
+        int left[n],right[n],sum=0;
+        int maxleft=arr[0];
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]>maxleft)
+            {
+                maxleft=arr[i];
+            }
+            left[i]=maxleft;
+        }
+        
+        int maxright=arr[n-1];
+        for(int i=n-1;i>=0;i--)
+        {
+            if(arr[i]>maxright)
+            {
+                maxright=arr[i];
+            }
+            right[i]=maxright;
+        }
+        
+        for(int i=0;i<n;i++)
+        {
+            sum+=min(left[i],right[i])-arr[i];
+        }
+        
+        return sum;
+        
+    }
 
 
 ----------------------------------------------------------------------------------TREES--------------------------------------------------------------------------------------
